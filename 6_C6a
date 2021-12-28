@@ -1,8 +1,8 @@
 /*
                 // QUESTION 6 //
     Write C++ program using STL for Sorting and searching with user-defined records such 
-    as Person Record (Name, birth date, telephone no), item record 
-    (item code, item name, quantity and cost) 
+    as Person Record (Name, birth date, telephone no), person record 
+    (person ID, person name, birth_date and telephone_number) 
 
 */
 #include <iostream>    //standard input output stream header file
@@ -10,26 +10,24 @@
 #include <vector>    //The header file for the STL vector library is vector.
 
 using namespace std;
-class Item       
+class person       
 {
       public:   
         char name[10];
-        int quantity;
-        int cost;
-        int code;
+        int birth_date;
+        int telephone_number;
+        int ID;
 
-        bool operator==(const Item& i1)    //Boolean operators allow you 
-                                                                  
+        bool operator==(const person& i1)    //Boolean operators allow you                                                 
        {
-        if(code==i1.code)    //operator will return 1 if the comparison is true, or 0 
-                                            
+        if(ID==i1.ID)    //operator will return 1 if the comparison is true, or 0                                 
         		  return 1;
         return 0;
     }
 
-    bool operator<(const Item& i1)
+    bool operator<(const person& i1)
     {
-        if(code<i1.code)    //operator will return 1 if the comparison is true, or 0 if  the  
+        if(ID<i1.ID)    //operator will return 1 if the comparison is true, or 0 if  the  
                                          
         		return 1;
         return 0;
@@ -37,16 +35,16 @@ class Item
 
 };
 
-vector<Item> o1;
-void print(Item &i1);
+vector<person> o1;
+void print(person &i1);
 void display();
 void insert();
 void search();
 void dlt();
 
-bool compare(const Item &i1, const Item &i2)
+bool compare(const person &i1, const person &i2)
 {
-     return i1.cost < i2.cost;
+     return i1.telephone_number < i2.telephone_number;
 }
 
 int main()
@@ -80,7 +78,7 @@ int main()
                               
                case 4:
                         sort(o1.begin(),o1.end(),compare);
-                        cout<<"\n\n Sorted on Cost";
+                        cout<<"\n\n Sorted on telephone_number";
                         display();
                         break;
                   
@@ -99,15 +97,15 @@ int main()
 
 void insert()
 {
-    Item i1;
-    cout<<"\nEnter Item Name:";
+    person i1;
+    cout<<"\nEnter person Name:";
     cin>>i1.name;
-    cout<<"\nEnter Item Quantity:";
-    cin>>i1.quantity;
-    cout<<"\nEnter Item Cost:";
-    cin>>i1.cost;
-    cout<<"\nEnter Item Code:";
-    cin>>i1.code;
+    cout<<"\nEnter person birth_date:";
+    cin>>i1.birth_date;
+    cout<<"\nEnter person telephone_number:";
+    cin>>i1.telephone_number;
+    cout<<"\nEnter person ID:";
+    cin>>i1.ID;
     o1.push_back(i1);
 }
 
@@ -116,21 +114,21 @@ void display()
     for_each(o1.begin(),o1.end(),print);
 }
 
-void print(Item &i1)
+void print(person &i1)
 {
      cout<<"\n";
-     cout<<"\nItem Name:"<<i1.name;
-     cout<<"\nItem Quantity:"<<i1.quantity;
-     cout<<"\nItem Cost:"<<i1.cost;
-     cout<<"\nItem Code:"<<i1.code;
+     cout<<"\nperson Name:"<<i1.name;
+     cout<<"\nperson birth_date:"<<i1.birth_date;
+     cout<<"\nperson telephone_number:"<<i1.telephone_number;
+     cout<<"\nperson ID:"<<i1.ID;
 }
 
 void search()
 {
-    vector<Item>::iterator p;
-    Item i1;
-    cout<<"\nEnter Item Code to search:";
-    cin>>i1.code;
+    vector<person>::iterator p;
+    person i1;
+    cout<<"\nEnter person ID to search:";
+    cin>>i1.ID;
     p=find(o1.begin(),o1.end(),i1);
     if(p==o1.end())
     {
@@ -144,10 +142,10 @@ void search()
 
 void dlt()
 {
-     vector<Item>::iterator p;
-    Item i1;
-    cout<<"\nEnter Item Code to delete:";
-    cin>>i1.code;
+    vector<person>::iterator p;
+    person i1;
+    cout<<"\nEnter person ID to delete:";
+    cin>>i1.ID;
     p=find(o1.begin(),o1.end(),i1);
     if(p==o1.end())
     {
@@ -159,3 +157,4 @@ void dlt()
          cout<<"\nDeleted.";
     }
 }
+
